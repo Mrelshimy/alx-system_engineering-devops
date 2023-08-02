@@ -11,5 +11,5 @@
 - 10-back - script for changing directory to the previous one
 - 11-lists - script for listing all files (even ones with names beginning with a period character, which are normally hidden) in the current directory and the parent of the working directory and the /boot directory (in this order), in long format.
 - 12-file_type - script for displaying iamafile file type
-
+- 13-symbolic_link creating symbolic link for /bin/ls
 `
