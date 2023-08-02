@@ -16,3 +16,4 @@
 - 100-lets_move script for moving all files starting with upper case letters to /tmp/u
 - 101-clean_emacs dcript for deleting files ensing with ~
 - 102-tree - script for creating 3 directories`
+- 103-commas - script for listing files and directories with certain configuration
