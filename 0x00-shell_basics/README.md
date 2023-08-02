@@ -13,4 +13,5 @@
 - 12-file_type - script for displaying iamafile file type
 - 13-symbolic_link creating symbolic link for /bin/ls
 - 14-copy_html copying all HTML files to parent directory without overwriting and updating old files
+- 100-lets_move script for moving all files starting with upper case letters to /tmp/u
 `
