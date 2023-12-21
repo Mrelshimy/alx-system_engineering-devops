@@ -9,11 +9,10 @@ then
 	else
 		echo "school file is empty"
 	fi
+	if [ -f "school" ]
+	then
+		echo "school file is a regular file"
+	fi
 else
 	echo "school file does not exist"
-fi
-
-if [ -f "school" ]
-then
-	echo "school file is a regular file"
 fi
