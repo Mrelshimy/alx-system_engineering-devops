@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Shell scriptto kill a certain process
+sudo pkill -f beyond
