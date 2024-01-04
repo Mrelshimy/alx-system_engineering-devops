@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Bash Script to print all ips on the device
+ip -4 -o address | awk '{print $4}' | cut -d "/" -f 1
