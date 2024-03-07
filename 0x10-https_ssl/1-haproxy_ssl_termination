@@ -35,9 +35,12 @@ defaults
 
 frontend HAproxyfront
         bind *:80
-		bind *:443 ssl crt /etc/haproxy/certs/www.raafat.tech.pem
 		mode http
+		default_backend HAproxyback
+frontend HAproxyfronts
+		bind *:443 ssl crt /etc/haproxy/certs/www.raafat.tech.pem
 		redirect scheme https if !{ ssl_fc }
+		mode http
 		default_backend HAproxyback
 backend HAproxyback
         mode http
