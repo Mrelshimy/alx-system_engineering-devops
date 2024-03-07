@@ -44,6 +44,5 @@ frontend HAproxyfronts
 		http-request set-header X-Forwarded-Proto https
 		default_backend HAproxyback
 backend HAproxyback
-        mode http
         server web-01 52.3.255.212 
         server web-02 100.24.235.178
