@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # Bash script to run whoami to a certain input user
 
 sudo -u "$1" whoami
