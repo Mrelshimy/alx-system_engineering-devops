@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+# Bash script to run whoami to a certain input user
+
+sudo -u "$1" whoami
