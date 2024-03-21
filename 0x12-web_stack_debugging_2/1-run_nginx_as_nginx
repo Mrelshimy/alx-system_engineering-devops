@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 # Bash script to run nginx on nginx user + listen to 8080
 
-# set a user in the config by replace '#user' and it's value
+# Change User to nginx
 sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
-# replace port 80 with 8080 in the sites-available config
+# Nginx listens to 8080 instead of 80
 sed -i "s/80/8080/g" /etc/nginx/sites-available/default
-# give owner permissions to read and write to the config file
+# Change permissions
 chmod 644 /etc/nginx/nginx.conf
-# apache may interfere with nginx so kill the process if it is running
 pkill apache2
-# now start the nginx service with the new nginx user
+# Restart Nginx
 sudo -u nginx service nginx start
