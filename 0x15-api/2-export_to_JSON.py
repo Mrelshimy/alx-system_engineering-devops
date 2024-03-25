@@ -13,7 +13,7 @@ if __name__ == "__main__":
     user_name = requests.get(url).json().get('name')
     user_id = requests.get(url).json().get('id')
     user_todos = requests.get(todo_url)
-    with open(f'{user_id}.csv', 'w') as file:
+    with open(f'new.csv', 'w') as file:
         for task in user_todos.json():
             file.write('"{}","{}","{}","{}"\n'
                        .format(user_id, user_name, task.get('completed'),
