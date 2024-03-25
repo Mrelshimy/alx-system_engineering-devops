@@ -1,20 +1,24 @@
 #!/usr/bin/python3
-"""Pyhton Script to fetch data from an API"""
-import csv
+"""Accessing a REST API for todo lists of employees"""
+
 import requests
 import sys
 
-if __name__ == "__main__":
-    """Request employee data and represent it"""
 
-    id = sys.argv[1]
-    url = f"https://jsonplaceholder.typicode.com/users/{id}"
-    todo_url = f"https://jsonplaceholder.typicode.com/users/{id}/todos"
-    user_name = requests.get(url).json().get('name')
-    user_id = requests.get(url).json().get('id')
-    user_todos = requests.get(todo_url)
-    with open(f'{user_id}.csv', 'w') as file:
-        for task in user_todos.json():
+if __name__ == '__main__':
+    employeeId = sys.argv[1]
+    baseUrl = "https://jsonplaceholder.typicode.com/users"
+    url = baseUrl + "/" + employeeId
+
+    response = requests.get(url)
+    username = response.json().get('username')
+
+    todoUrl = url + "/todos"
+    response = requests.get(todoUrl)
+    tasks = response.json()
+
+    with open('{}.csv'.format(employeeId), 'w') as file:
+        for task in tasks:
             file.write('"{}","{}","{}","{}"\n'
-                       .format(user_id, user_name, task.get('completed'),
+                       .format(employeeId, username, task.get('completed'),
                                task.get('title')))
