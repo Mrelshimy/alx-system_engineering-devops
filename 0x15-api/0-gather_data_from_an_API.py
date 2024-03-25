@@ -18,4 +18,4 @@ if __name__ == "__main__":
     print(f"Employee {user_name} is done with tasks\
 ({len(finished_tasks)}/{len(user_todos.json())}):")
     for item in finished_tasks:
-        print(f'\t{item}')
+        print(f'\t {item}')
