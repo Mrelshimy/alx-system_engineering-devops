@@ -1,35 +1,28 @@
 #!/usr/bin/python3
-"""Script to paginate response"""
-
+"""
+Using reddit's API
+"""
 import requests
+after = None
 
 
-def recurse(subreddit, hot_list=[], page=1, limit=100):
-    """A recursive function that queries the Reddit API
-    returns a list containing the titles
-    of all hot articles for a given subreddit.
-    """
+def recurse(subreddit, hot_list=[]):
+    """returning top ten post titles recursively"""
+    global after
+    headers = {'User-Agent': 'raafat'}
+    url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
+    params = {'after': after}
+    responce = requests.get(url, params=params, headers=headers,
+                            allow_redirects=False)
 
-    if len(hot_list) >= limit:
+    if responce.status_code == 200:
+        data = responce.json().get("data").get("after")
+        if data is not None:
+            after = data
+            recurse(subreddit, hot_list)
+        all_titles = responce.json().get("data").get("children")
+        for title_ in all_titles:
+            hot_list.append(title_.get("data").get("title"))
         return hot_list
-
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    parameters = {"page": page}
-    heads = {
-        "User-Agent": "raafat"
-    }
-
-    responce = requests.get(url, params=parameters, headers=heads)
-    if responce.status_code == 404:
-        return None
-    data = responce.json()
-
-    if "data" in data and "children" in data["data"]:
-        posts = data["data"]["children"]
-        for post in posts:
-            hot_list.append(post["data"]["title"])
-
-    if "data" in data and "after" in data["data"]:
-        page += 1
-        return recurse(subreddit, hot_list, page)
-    return hot_list
+    else:
+        return (None)
