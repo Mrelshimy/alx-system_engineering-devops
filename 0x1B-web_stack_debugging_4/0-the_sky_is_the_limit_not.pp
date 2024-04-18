@@ -1,12 +1,11 @@
 # Increase server accepted requests rate
 
-exec {'increaseLimit':
-  provider => shell,
-  command  => 'sudo sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 4096\"/" /etc/default/nginx',
-  before   => Exec['restart'],
+exec { 'IncreaseLimit':
+  command => 'sed -i "s/15/4096/" /etc/default/nginx',
+  path    => '/usr/local/bin/:/bin/'
 }
 
-exec {'nginxRestart':
-  provider => shell,
-  command  => 'sudo service nginx restart',
+-> exec { 'restartNginx':
+  command => 'nginx restart',
+  path    => '/etc/init.d/'
 }
